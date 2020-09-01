@@ -8,6 +8,6 @@ class InferenceResource:
     def __init__(self, inference_usecase: InferenceUseCase):
         self.inference_usecase = inference_usecase
 
-    async def on_get(self) -> Inference:
-        inference = await self.inference_usecase.get_inference()
-        return inference
+    async def get_inference(self) -> Inference:
+        result = await self.inference_usecase.get_inference()
+        return result
