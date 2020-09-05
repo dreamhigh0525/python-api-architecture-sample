@@ -1,15 +1,14 @@
-from src.domain.inference import Inference
-from src.interface.inference_driver import AbstractInferenceDriver
-from src.interface.inference_repository import AbstractInferenceRepository
+import asyncio
+from src.model.inference import Inference
 
 
-class InferenceRepository(AbstractInferenceRepository):
-    inference_driver: AbstractInferenceDriver
+class InferenceRepository:
 
-    def __init__(self, inference_driver: AbstractInferenceDriver):
-        self.inference_driver = inference_driver
+    def __init__(self):
+        pass
 
     async def get_inference(self) -> Inference:
-        res = await self.inference_driver.get_inference()
+        await asyncio.sleep(3)
+        res = ('test id', 1.0)
         return Inference(id=res[0], confidence=res[1])
 
