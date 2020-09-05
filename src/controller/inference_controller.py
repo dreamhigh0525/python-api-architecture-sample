@@ -1,4 +1,4 @@
-from src.driver.inference_driver import InferenceDriver
+from src.infrastructure.inference_driver import InferenceDriver
 from src.interactor.inference_interactor import InferenceInteractor
 from src.repository.inference_repository import InferenceRepository
 from src.resource.inference_resource import InferenceResource
