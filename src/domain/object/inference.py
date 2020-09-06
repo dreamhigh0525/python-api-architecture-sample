@@ -1,8 +1,7 @@
-
 from dataclasses import dataclass
 
 
 @dataclass(frozen=True)
-class Image:
+class Inference:
     id: str
-    data: str
+    confidence: float
