@@ -1,8 +1,9 @@
 import asyncio
-from src.model.inference import Inference
+from src.domain.repository.inference_repository import AbstructInferenceRepository
+from src.domain.object.inference import Inference
 
 
-class InferenceRepository:
+class InferenceRepository(AbstructInferenceRepository):
 
     def __init__(self):
         pass

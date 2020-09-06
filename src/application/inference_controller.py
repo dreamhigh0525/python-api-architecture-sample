@@ -1,17 +1,21 @@
+from injector import Injector
 from responder.api import API
-from src.model.image import Image
-from src.service.inference_service import InferenceService
+from src.domain.object.image import Image
+from src.domain.repository.inference_repository import AbstructInferenceRepository
+from src.domain.service.inference_service import InferenceService
 
 
 class InferenceController:
     inference_service: InferenceService
     api: API
 
-    def __init__(self, api: API):
-        print("init")
-        self.inference_service = InferenceService()
+    def __init__(self, api: API, injector: Injector):
+        repository = injector.get(AbstructInferenceRepository)
+        self.inference_service = InferenceService(
+            inference_repository=repository
+        )
         self.api = api
-    
+
     async def on_get(self, req, res):
         res.media = {"id": 'test id', "confidence": 1.0}
 
@@ -27,5 +31,3 @@ class InferenceController:
         process_data(data)
         res.status_code = 202
         res.media = {'status': 'ok'}
-        
-        
