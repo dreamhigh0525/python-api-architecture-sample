@@ -1,0 +1,35 @@
+openapi: 3.0.0
+info:
+  title: Image Inference API
+  version: 0.0.1
+paths:
+  /inference:
+    post:
+      summary: image inference servic
+      description: post a image file for inference
+      requestBody:
+        content:
+          multipart/form-data:
+            schema:
+              properties:
+                file:
+                  format: binary
+                  required: true
+                  type: string
+                id:
+                  required: true
+                  type: string
+              type: object
+      responses:
+        '202':
+          description: request accepted
+          schema:
+            properties:
+              status:
+                type: string
+            type: object
+        '400':
+          description: invalid parameters
+        '500':
+          description: internal server error
+      

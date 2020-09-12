@@ -22,6 +22,37 @@ class InferenceController:
         res.media = {'status': 'ok'}
 
     async def on_post(self, req: Request, res: Response):
+        """Inference Service
+        ---
+        post:
+          summary: image inference service
+          description: post a image file for inference
+          requestBody:
+            content:
+              multipart/form-data:
+                schema:
+                  type: object
+                  properties:
+                    id:
+                      type: string
+                      required: true
+                    file:
+                      type: string
+                      format: binary
+                      required: true
+          responses:
+            202:
+              description: request accepted
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+            400:
+              description: invalid parameters
+            500:
+              description: internal server error
+        """
         try:
             data = await req.media(format='files')
             schema = InferenceRequestSchema().load(data)
