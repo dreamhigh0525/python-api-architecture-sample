@@ -12,7 +12,7 @@ class InferenceDIModule(Module):
 
 class ReportDIModule(Module):
     def configure(self, binder):
-        binder.bind(AbstructReportRepository, ReportRepository)
+        binder.bind(AbstructReportRepository, to=ReportRepository)
 
 
 injector = Injector([InferenceDIModule(), ReportDIModule()])

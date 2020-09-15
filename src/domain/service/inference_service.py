@@ -11,5 +11,5 @@ class InferenceService():
     def __init__(self, inference_repository: AbstructInferenceRepository):
         self.inference_repository = inference_repository
 
-    async def get_inference(self, image: Image) -> Inference:
-        return await self.inference_repository.get_inference(image)
+    def get_inference(self, image: Image) -> Inference:
+        return self.inference_repository.get_inference(image)

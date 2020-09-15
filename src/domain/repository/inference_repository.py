@@ -5,5 +5,5 @@ from src.domain.object.inference import Inference
 
 class AbstructInferenceRepository(metaclass=ABCMeta):
     @abstractmethod
-    async def get_inference(self, data: Image) -> Inference:
+    def get_inference(self, data: Image) -> Inference:
         raise NotImplementedError

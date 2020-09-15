@@ -10,5 +10,5 @@ class ReportService():
     def __init__(self, report_repository: AbstructReportRepository):
         self.report_repository = report_repository
 
-    async def report_inference(self, data: Inference) -> None:
-        await self.report_repository.report_inference(data)
+    def report_inference(self, data: Inference) -> None:
+        self.report_repository.report_inference(data)

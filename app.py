@@ -7,8 +7,9 @@ from src.application.exception import exception_handler
 
 
 controller = InferenceController()
-api.add_route('/', endpoint=exception_handler, default=True)
 api.add_route('/inference', controller.on_post)
+api.add_route('/report', controller.on_get)
+api.add_route('/', exception_handler, default=True)
 
 if __name__ == '__main__':
     api.run(port=8080, debug=True)
