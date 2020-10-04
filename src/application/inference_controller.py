@@ -2,7 +2,7 @@ import sys
 from responder import Request, Response
 from marshmallow.exceptions import ValidationError
 from src.application.request_schema import InferenceRequest, InferenceRequestSchema
-from src.domain.object.image import Image
+from src.domain.object.content import Content
 from src.domain.service.inference_service import InferenceService
 from src.domain.service.report_service import ReportService
 from src.domain.repository.inference_repository import AbstructInferenceRepository
@@ -74,6 +74,6 @@ class InferenceController:
 
     @api.background.task
     def __process_data(self, req: InferenceRequest):
-        image = Image(id=req.id, data=req.file['content'])
+        image = Content(id=req.id, data=req.file['content'])
         result = self.inference_service.get_inference(image)
         self.report_service.report_inference(result)
