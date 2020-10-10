@@ -12,16 +12,21 @@ class InferenceRequest:
 
 
 class InferenceRequestSchema(Schema):
-    id = fields.String(required=True)
+    id = fields.Dict(required=True)
     file = fields.Dict(required=True)
-    type = fields.String(required=True)
+    type = fields.Dict(required=True)
 
     @post_load
     def make_object(self, data, **kwargs) -> InferenceRequest:
+        id = data['id']['content'].decode('utf-8')
         image_file: Dict = data['file']
         if not isinstance(image_file['content'], bytes):
             raise ValidationError('file must be a image binary file')
-        content_type: str = data['type']
+        content_type = str(data['type']['content'].decode('utf-8'))
         if content_type not in ['movie', 'gun']:
             raise ValidationError('type must be movie or gun')
-        return InferenceRequest(**data)
+        return InferenceRequest(
+            id=id,
+            file=image_file,
+            type=content_type
+        )

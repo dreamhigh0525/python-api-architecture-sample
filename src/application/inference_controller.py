@@ -44,10 +44,16 @@ class InferenceController:
                     id:
                       type: string
                       required: true
+                      example: test id
                     file:
                       type: string
                       format: binary
                       required: true
+                      example: image file binary
+                    type:
+                      type: string
+                      required: true
+                      example: movie|gun
           responses:
             202:
               description: request accepted
