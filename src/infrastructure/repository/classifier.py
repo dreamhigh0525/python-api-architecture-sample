@@ -1,5 +1,4 @@
 from typing import Any, Dict, Tuple
-
 import torch
 from torch import nn
 from torch.nn.functional import softmax
@@ -17,9 +16,8 @@ class Classifier(object):
     def __init__(self, model_path: str):
         self.__load_model(model_path)
         self.__build_transformer()
-        
+
     def predict(self, content: Content) -> Tuple[int, float]:
-        # TODO
         x = self.transformer(content.data)
         x = x.unsqueeze(0)
         x.to('cpu')
@@ -34,7 +32,7 @@ class Classifier(object):
         return (label, confidence)
 
     def __load_model(self, model_path: str) -> None:
-        print('loading model')
+        print('loading classifier model')
         device = 'cpu'
         state = torch.load(model_path, map_location=torch.device(device))
         self.net = models.resnet50(pretrained=False)
@@ -57,4 +55,3 @@ class Classifier(object):
             transforms.ToTensor(),
             transforms.Normalize(MEAN_IMAGE, STD_IMAGE)
         ])
-
