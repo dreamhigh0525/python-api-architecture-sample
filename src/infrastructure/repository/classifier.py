@@ -19,12 +19,12 @@ class Classifier(object):
 
     def predict(self, content: Content) -> Tuple[int, float]:
         x = self.transformer(content.data)
-        x = x.unsqueeze(0)
+        x = x.unsqueeze(0)  # type: ignore
         x.to('cpu')
         with torch.no_grad():
             outputs = self.net(x)
 
-        _, preds = torch.max(outputs, 1)
+        _, preds = torch.max(outputs, 1)  # type: ignore
         label = int(preds)
         score = softmax(input=outputs, dim=1)[:, 1]
         confidence = float(score.cpu()) if label == 1 else 1 - float(score.cpu())
@@ -36,7 +36,7 @@ class Classifier(object):
         state = torch.load(model_path, map_location=torch.device(device))
         self.net = models.resnet50(pretrained=False)
         self.config = state['configuration']
-        self.net.fc = nn.Sequential(*[
+        self.net.fc = nn.Sequential(*[  # type: ignore
             nn.Dropout(p=self.config['dropout']),
             nn.Linear(self.net.fc.in_features, 2)]
         )

@@ -22,5 +22,5 @@ class InferenceRepository(AbstructInferenceRepository):
             label, confidence = self.classifier.predict(image)
         else:
             label, confidence = self.detector.predict(image)
-        
+
         return Inference(label=str(label), confidence=confidence)

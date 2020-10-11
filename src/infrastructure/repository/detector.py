@@ -17,7 +17,7 @@ class Detector(object):
 
     def predict(self, content: Content) -> Tuple[int, float]:
         x = self.transformer(content.data)
-        x = x.unsqueeze(0)
+        x = x.unsqueeze(0)  # type: ignore
         x.to('cpu')
         with torch.no_grad():
             outputs = self.net(x)
@@ -29,7 +29,6 @@ class Detector(object):
         else:
             label = 0
             score = 0.0
-        # [{'boxes': tensor([[ 66.9177, 158.3443, 110.1927, 182.2636]]), 'labels': tensor([1]), 'scores': tensor([0.9993])}]
         # resize_box_factors = [image.width / image_size, image.height / image_size] * 2
         # box = outputs[0]['boxes'][0]
         # resized_box = box.cpu() * torch.tensor(resize_box_factors)

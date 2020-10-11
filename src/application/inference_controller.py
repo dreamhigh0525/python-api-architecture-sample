@@ -1,4 +1,3 @@
-import sys
 from responder import Request, Response
 from marshmallow.exceptions import ValidationError
 from src.application.request_schema import InferenceRequest, InferenceRequestSchema
@@ -27,7 +26,7 @@ class InferenceController:
         )
 
     async def on_get(self, req: Request, res: Response):
-        res.media = {'status': 'ok'}
+        res.media = {'status': 'ok'}  # type: ignore
 
     async def on_post(self, req: Request, res: Response):
         """Inference Service
@@ -72,11 +71,11 @@ class InferenceController:
             schema = InferenceRequestSchema().load(data, many=False)
             self.__process_data(schema)
             res.status_code = 202
-            res.media = {'status': f'request accepted: {schema.id}'}
+            res.media = {'status': f'request accepted: {schema.id}'}  # type: ignore
             logger.info(f'request accepted: {schema.id}')
         except ValidationError as e:
             res.status_code = 400
-            res.media = {'message': e.messages}
+            res.media = {'message': e.messages}  # type: ignore
             logger.warn(e.messages)
 
     @api.background.task
@@ -86,7 +85,7 @@ class InferenceController:
             type = InferenceType.CLASSIFIER
         else:
             type = InferenceType.DETECTOR
-        
+
         result = self.inference_service.get_inference(type, image)
         logger.info(result)
         self.report_service.report_inference(result)
