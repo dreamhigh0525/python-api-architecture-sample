@@ -12,5 +12,4 @@ class ReportRepository(AbstructReportRepository):
 
     def report_inference(self, data: Inference) -> None:
         res = requests.get(self.base_url)
-        print(res.content)
         logger.info('report completed')

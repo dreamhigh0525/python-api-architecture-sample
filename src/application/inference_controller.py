@@ -73,11 +73,11 @@ class InferenceController:
             self.__process_data(schema)
             res.status_code = 202
             res.media = {'status': f'request accepted: {schema.id}'}
-            logger.info('request accepted')
+            logger.info(f'request accepted: {schema.id}')
         except ValidationError as e:
             res.status_code = 400
             res.media = {'message': e.messages}
-            print(e, file=sys.stderr)
+            logger.warn(e.messages)
 
     @api.background.task
     def __process_data(self, req: InferenceRequest):
@@ -88,4 +88,5 @@ class InferenceController:
             type = InferenceType.DETECTOR
         
         result = self.inference_service.get_inference(type, image)
+        logger.info(result)
         self.report_service.report_inference(result)

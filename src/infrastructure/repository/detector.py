@@ -35,7 +35,6 @@ class Detector(object):
         # resized_box = box.cpu() * torch.tensor(resize_box_factors)
         # box_xywh = resized_box[:2].tolist() + (resized_box[2:] - resized_box[:2]).tolist()
         # print(box_xywh)
-        print(label, score)
         return (label, score)
 
     def __load_model(self, model_path: str) -> None:

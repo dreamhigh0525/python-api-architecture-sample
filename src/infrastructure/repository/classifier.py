@@ -28,7 +28,6 @@ class Classifier(object):
         label = int(preds)
         score = softmax(input=outputs, dim=1)[:, 1]
         confidence = float(score.cpu()) if label == 1 else 1 - float(score.cpu())
-        print(label, confidence)
         return (label, confidence)
 
     def __load_model(self, model_path: str) -> None:

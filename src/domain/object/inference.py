@@ -3,5 +3,5 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class Inference:
-    id: str
+    label: str
     confidence: float

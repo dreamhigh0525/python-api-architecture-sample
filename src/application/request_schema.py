@@ -11,6 +11,7 @@ class InferenceRequest:
     type: str
 
 
+# multipart/form-data
 class InferenceRequestSchema(Schema):
     id = fields.Dict(required=True)
     file = fields.Dict(required=True)
