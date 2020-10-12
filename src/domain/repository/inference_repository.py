@@ -6,5 +6,5 @@ from src.domain.object.inference_type import InferenceType
 
 class AbstructInferenceRepository(metaclass=ABCMeta):
     @abstractmethod
-    def get_inference(self, type: InferenceType, data: Content) -> Inference:
+    def get_inference(self, type: InferenceType, content: Content) -> Inference:
         raise NotImplementedError

@@ -6,6 +6,7 @@ from torchvision import transforms, models
 from torchvision.models import ResNet
 from torchvision.transforms.transforms import Compose
 from src.domain.object.content import Content
+from src.helper.api_module import logger
 
 
 class Classifier(object):
@@ -31,7 +32,6 @@ class Classifier(object):
         return (label, confidence)
 
     def __load_model(self, model_path: str) -> None:
-        print('loading classifier model')
         device = 'cpu'
         state = torch.load(model_path, map_location=torch.device(device))
         self.net = models.resnet50(pretrained=False)
@@ -43,6 +43,7 @@ class Classifier(object):
         self.net.load_state_dict(state['model'])
         self.net.to(device)
         self.net.eval()
+        logger.info(f'loading classifier model: {model_path}')
 
     def __build_transformer(self) -> None:
         image_size = self.config['image_size']

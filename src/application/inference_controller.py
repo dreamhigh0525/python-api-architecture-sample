@@ -80,12 +80,16 @@ class InferenceController:
 
     @api.background.task
     def __process_data(self, req: InferenceRequest):
-        image = Content(id=req.id, data=req.file['content'])
+        content = Content(
+            id=req.id,
+            filename=req.file['filename'],
+            data=req.file['content']
+        )
         if req.type == 'movie':
             type = InferenceType.CLASSIFIER
         else:
             type = InferenceType.DETECTOR
 
-        result = self.inference_service.get_inference(type, image)
+        result = self.inference_service.get_inference(type, content)
         logger.info(result)
         self.report_service.report_inference(result)

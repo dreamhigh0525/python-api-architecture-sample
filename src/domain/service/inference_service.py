@@ -12,5 +12,5 @@ class InferenceService():
     def __init__(self, inference_repository: AbstructInferenceRepository):
         self.inference_repository = inference_repository
 
-    def get_inference(self, type: InferenceType, image: Content) -> Inference:
-        return self.inference_repository.get_inference(type, image)
+    def get_inference(self, type: InferenceType, content: Content) -> Inference:
+        return self.inference_repository.get_inference(type, content)

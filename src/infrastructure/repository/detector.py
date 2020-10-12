@@ -4,6 +4,7 @@ from torchvision.models.detection.faster_rcnn import FasterRCNN, fasterrcnn_resn
 from torchvision.transforms import transforms
 from torchvision.transforms.transforms import Compose
 from src.domain.object.content import Content
+from src.helper.api_module import logger
 
 
 class Detector(object):
@@ -37,7 +38,6 @@ class Detector(object):
         return (label, score)
 
     def __load_model(self, model_path: str) -> None:
-        print('loading detector model')
         device = 'cpu'
         state_dict = torch.load(model_path, map_location=torch.device(device))
         labels_enumeration = state_dict['labels_enumeration']
@@ -47,6 +47,7 @@ class Detector(object):
         self.net.load_state_dict(state_dict['model'])
         self.net.to(device)
         self.net.eval()
+        logger.info(f'loading detector model: {model_path}')
 
     def __build_transformer(self) -> None:
         image_size = self.config['image_size']

@@ -1,6 +1,6 @@
 
 import responder
-from logging import getLogger, Formatter, FileHandler, StreamHandler, DEBUG
+from logging import getLogger, Formatter, FileHandler, StreamHandler, INFO
 
 api = responder.API(
     openapi='3.0.0',
@@ -12,13 +12,13 @@ api = responder.API(
 logger = getLogger(__name__)
 formatter = Formatter('%(asctime)s [%(levelname)s] :%(message)s')
 file_handler = FileHandler('request.log')
-file_handler.setLevel(DEBUG)
+file_handler.setLevel(INFO)
 file_handler.setFormatter(formatter)
 stream_handler = StreamHandler()
-stream_handler.setLevel(DEBUG)
+stream_handler.setLevel(INFO)
 stream_handler.setFormatter(formatter)
 
-logger.setLevel(DEBUG)
-logger.addHandler(file_handler)
+logger.setLevel(INFO)
+# logger.addHandler(file_handler)
 logger.addHandler(stream_handler)
 logger.propagate = False
