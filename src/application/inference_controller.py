@@ -49,7 +49,7 @@ class InferenceController:
                       format: binary
                       required: true
                       example: image file binary
-                    type:
+                    category:
                       type: string
                       required: true
                       example: movie|gun

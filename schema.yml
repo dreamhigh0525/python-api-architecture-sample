@@ -11,15 +11,21 @@ paths:
         content:
           multipart/form-data:
             schema:
+              type: object
               properties:
                 file:
                   format: binary
                   required: true
                   type: string
+                  example: image file binary
                 id:
                   required: true
                   type: string
-              type: object
+                  example: test id
+                category:
+                  required: true
+                  type: string
+                  example: movie|gun
       responses:
         '202':
           description: request accepted
