@@ -85,7 +85,7 @@ class InferenceController:
             filename=req.file['filename'],
             data=req.file['content']
         )
-        if req.type == 'movie':
+        if req.category == 'movie':
             type = InferenceType.CLASSIFIER
         else:
             type = InferenceType.DETECTOR
