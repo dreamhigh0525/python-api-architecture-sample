@@ -92,4 +92,4 @@ class InferenceController:
 
         result = self.inference_service.get_inference(type, content)
         logger.info(result)
-        self.report_service.report_inference(result)
+        self.report_service.report_inference(content, result)
