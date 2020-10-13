@@ -5,6 +5,7 @@ from src.domain.object.inference_type import InferenceType
 from src.domain.repository.inference_repository import AbstructInferenceRepository
 from src.infrastructure.repository.classifier import Classifier
 from src.infrastructure.repository.detector import Detector
+from src.infrastructure.repository.exceptions import ModelNotFoundError
 from src.helper.api_module import logger
 
 
@@ -13,7 +14,7 @@ class InferenceRepository(AbstructInferenceRepository):
     detector: Detector
 
     def __init__(self):
-        # TODO: adapt for paas
+        # TODO: adapt for paas (No space left on device)
         self.__set_model()
 
     def get_inference(self, type: InferenceType, content: Content) -> Inference:
@@ -30,7 +31,11 @@ class InferenceRepository(AbstructInferenceRepository):
             classifier_model = base_path + os.environ['CLASSIFIER_MODEL']
             self.classifier = Classifier(classifier_model)
             detector_model = base_path + os.environ['DETECTOR_MODEL']
-            self.detector = Detector(detector_model)
+            if os.environ.get('VCAP_APPLICATION') is None:
+                # [Errno 28] no space left on device
+                self.detector = self.classifier  # type: ignore
+            else:
+                self.detector = Detector(detector_model)
         except KeyError as e:
             logger.critical(e.args[0] + ' key not found')
-            raise e
+            raise ModelNotFoundError(e)

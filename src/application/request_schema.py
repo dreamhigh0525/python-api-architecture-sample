@@ -25,7 +25,7 @@ class InferenceRequestSchema(Schema):
             raise ValidationError('file must be a image binary file')
         category = str(data['category']['content'].decode('utf-8'))
         if category not in ['movie', 'gun']:
-            raise ValidationError('type must be movie or gun')
+            raise ValidationError('category must be movie or gun')
         return InferenceRequest(
             id=id,
             file=image_file,
