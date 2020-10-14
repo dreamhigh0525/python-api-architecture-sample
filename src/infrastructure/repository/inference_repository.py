@@ -33,9 +33,10 @@ class InferenceRepository(AbstructInferenceRepository):
             detector_model = base_path + os.environ['DETECTOR_MODEL']
             if os.environ.get('VCAP_APPLICATION') is None:
                 # [Errno 28] no space left on device
-                self.detector = self.classifier  # type: ignore
-            else:
                 self.detector = Detector(detector_model)
+            else:
+                self.detector = self.classifier  # type: ignore
+                
         except KeyError as e:
             logger.critical(e.args[0] + ' key not found')
             raise ModelNotFoundError(e)
