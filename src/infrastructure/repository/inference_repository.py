@@ -9,12 +9,12 @@ from src.infrastructure.repository.exceptions import ModelNotFoundError
 from src.helper.api_module import logger
 
 
+# TODO: adapt for PaaS (No space left on device)
 class InferenceRepository(AbstructInferenceRepository):
     classifier: Classifier
     detector: Detector
 
     def __init__(self):
-        # TODO: adapt for paas (No space left on device)
         self.__set_model()
 
     def get_inference(self, type: InferenceType, content: Content) -> Inference:

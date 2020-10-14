@@ -9,6 +9,7 @@ class InferenceRequest:
     id: str
     file: Dict[str, Any]
     category: str
+    url: str
 
 
 # multipart/form-data
@@ -16,6 +17,7 @@ class InferenceRequestSchema(Schema):
     id = fields.Dict(required=True)
     file = fields.Dict(required=True)
     category = fields.Dict(required=True)
+    url = fields.Dict(required=True)
 
     @post_load
     def make_object(self, data, **kwargs) -> InferenceRequest:
@@ -26,8 +28,11 @@ class InferenceRequestSchema(Schema):
         category = str(data['category']['content'].decode('utf-8'))
         if category not in ['movie', 'gun']:
             raise ValidationError('category must be movie or gun')
+        url = str(data['url']['content'].decode('utf-8'))
+
         return InferenceRequest(
             id=id,
             file=image_file,
-            category=category
+            category=category,
+            url=url
         )

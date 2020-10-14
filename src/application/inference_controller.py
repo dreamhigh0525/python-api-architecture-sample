@@ -53,6 +53,10 @@ class InferenceController:
                       type: string
                       required: true
                       example: movie|gun
+                    url:
+                      type: string
+                      required: true
+                      example: https://localhost/test.jpg
           responses:
             202:
               description: request accepted
@@ -82,14 +86,9 @@ class InferenceController:
     def __process_data(self, req: InferenceRequest):
         content = Content(
             id=req.id,
-            filename=req.file['filename'],
+            url=req.url,
             data=req.file['content']
         )
-        if req.category == 'movie':
-            type = InferenceType.CLASSIFIER
-        else:
-            type = InferenceType.DETECTOR
-
-        result = self.inference_service.get_inference(type, content)
+        result = self.inference_service.get_inference(req.category, content)
         logger.info(result)
         self.report_service.report_inference(content, result)
