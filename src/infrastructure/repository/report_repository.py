@@ -1,12 +1,12 @@
 import requests
 from src.domain.object.content import Content
 from src.domain.object.inference import Inference
-from src.domain.repository.report_repository import AbstructReportRepository
+from src.domain.repository.report_repository import AbstractReportRepository
 from src.helper.api_module import logger
 
 
 # TODO: implement
-class ReportRepository(AbstructReportRepository):
+class ReportRepository(AbstractReportRepository):
     base_url: str
 
     def __init__(self):
