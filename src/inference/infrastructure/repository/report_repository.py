@@ -1,8 +1,8 @@
 import requests
-from src.domain.object.content import Content
-from src.domain.object.inference import Inference
-from src.domain.repository.report_repository import AbstractReportRepository
-from src.helper.api_module import logger
+from inference.domain.object.content import Content
+from inference.domain.object.inference import Inference
+from inference.domain.repository.report_repository import AbstractReportRepository
+from inference.helper.api_module import logger
 
 
 # TODO: implement

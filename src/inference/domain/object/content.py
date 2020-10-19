@@ -8,11 +8,13 @@ ImageFile.LOAD_TRUNCATED_IMAGES = True  # type: ignore
 @dataclass(frozen=True)
 class Content:
     id: str
+    category: str
     url: str
     data: PILImage
 
-    def __init__(self, id: str, url: str, data: bytes):
+    def __init__(self, id: str, category: str, url: str, data: bytes):
         object.__setattr__(self, 'id', id)
         object.__setattr__(self, 'url', url)
+        object.__setattr__(self, 'category', category)
         object.__setattr__(self, 'data', Image.open(BytesIO(data)))
         self.data.convert('RGB')

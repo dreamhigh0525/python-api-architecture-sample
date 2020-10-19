@@ -1,6 +1,6 @@
 from abc import ABCMeta, abstractmethod
-from src.domain.object.content import Content
-from src.domain.object.inference import Inference
+from inference.domain.object.content import Content
+from inference.domain.object.inference import Inference
 
 
 class AbstractReportRepository(metaclass=ABCMeta):

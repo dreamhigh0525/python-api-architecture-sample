@@ -1,7 +1,7 @@
 from abc import ABCMeta, abstractmethod
-from src.domain.object.content import Content
-from src.domain.object.inference import Inference
-from src.domain.object.inference_type import InferenceType
+from inference.domain.object.content import Content
+from inference.domain.object.inference import Inference
+from inference.domain.object.inference_type import InferenceType
 
 
 class AbstractInferenceRepository(metaclass=ABCMeta):

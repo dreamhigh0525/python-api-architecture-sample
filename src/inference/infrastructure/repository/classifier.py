@@ -5,8 +5,8 @@ from torch.nn.functional import softmax
 from torchvision import transforms, models
 from torchvision.models import ResNet
 from torchvision.transforms.transforms import Compose
-from src.domain.object.content import Content
-from src.helper.api_module import logger
+from inference.domain.object.content import Content
+from inference.helper.api_module import logger
 
 
 class Classifier(object):

@@ -2,9 +2,9 @@
 # -*- coding: utf-8 -*-
 
 import os
-from src.helper.api_module import api
-from src.application.inference_controller import InferenceController
-from src.application.exception import exception_handler
+from inference.helper.api_module import api
+from inference.application.inference_controller import InferenceController
+from inference.application.exception import exception_handler
 
 controller = InferenceController()
 api.add_route('/inference', controller.on_post)

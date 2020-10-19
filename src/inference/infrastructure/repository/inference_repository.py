@@ -1,12 +1,12 @@
 import os
-from src.domain.object.content import Content
-from src.domain.object.inference import Inference
-from src.domain.object.inference_type import InferenceType
-from src.domain.repository.inference_repository import AbstractInferenceRepository
-from src.infrastructure.repository.classifier import Classifier
-from src.infrastructure.repository.detector import Detector
-from src.infrastructure.repository.exceptions import ModelNotFoundError
-from src.helper.api_module import logger
+from inference.domain.object.content import Content
+from inference.domain.object.inference import Inference
+from inference.domain.object.inference_type import InferenceType
+from inference.domain.repository.inference_repository import AbstractInferenceRepository
+from inference.infrastructure.repository.classifier import Classifier
+from inference.infrastructure.repository.detector import Detector
+from inference.infrastructure.repository.exceptions import ModelNotFoundError
+from inference.helper.api_module import logger
 
 
 # TODO: adapt for PaaS (No space left on device)

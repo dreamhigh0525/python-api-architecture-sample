@@ -3,8 +3,8 @@ import torch
 from torchvision.models.detection.faster_rcnn import FasterRCNN, fasterrcnn_resnet50_fpn
 from torchvision.transforms import transforms
 from torchvision.transforms.transforms import Compose
-from src.domain.object.content import Content
-from src.helper.api_module import logger
+from inference.domain.object.content import Content
+from inference.helper.api_module import logger
 
 
 class Detector(object):

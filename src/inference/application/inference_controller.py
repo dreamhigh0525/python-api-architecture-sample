@@ -1,13 +1,13 @@
 from responder import Request, Response
 from marshmallow.exceptions import ValidationError
-from src.application.request_schema import InferenceRequest, InferenceRequestSchema
-from src.domain.object.content import Content
-from src.domain.service.inference_service import InferenceService
-from src.domain.service.report_service import ReportService
-from src.domain.repository.inference_repository import AbstractInferenceRepository
-from src.domain.repository.report_repository import AbstractReportRepository
-from src.helper.api_module import api, logger
-from src.helper.di_module import injector
+from inference.application.request_schema import InferenceRequest, InferenceRequestSchema
+from inference.domain.object.content import Content
+from inference.domain.service.inference_service import InferenceService
+from inference.domain.service.report_service import ReportService
+from inference.domain.repository.inference_repository import AbstractInferenceRepository
+from inference.domain.repository.report_repository import AbstractReportRepository
+from inference.helper.api_module import api, logger
+from inference.helper.di_module import injector
 
 
 class InferenceController:
@@ -85,9 +85,10 @@ class InferenceController:
     def __process_data(self, req: InferenceRequest):
         content = Content(
             id=req.id,
+            category=req.category,
             url=req.url,
             data=req.file['content']
         )
-        result = self.inference_service.get_inference(req.category, content)
+        result = self.inference_service.get_inference(content)
         logger.info(result)
         self.report_service.report_inference(content, result)

@@ -1,8 +1,8 @@
 from injector import inject
-from src.domain.object.content import Content
-from src.domain.object.inference import Inference
-from src.domain.object.inference_type import InferenceType
-from src.domain.repository.inference_repository import AbstractInferenceRepository
+from inference.domain.object.content import Content
+from inference.domain.object.inference import Inference
+from inference.domain.object.inference_type import InferenceType
+from inference.domain.repository.inference_repository import AbstractInferenceRepository
 
 
 class InferenceService():
@@ -12,8 +12,8 @@ class InferenceService():
     def __init__(self, inference_repository: AbstractInferenceRepository):
         self.inference_repository = inference_repository
 
-    def get_inference(self, category: str, content: Content) -> Inference:
-        if category == 'movie':
+    def get_inference(self, content: Content) -> Inference:
+        if content.category == 'movie':
             type = InferenceType.CLASSIFIER
         else:  # category == gun
             type = InferenceType.DETECTOR
