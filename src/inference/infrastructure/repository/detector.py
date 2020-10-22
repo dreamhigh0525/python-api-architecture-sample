@@ -23,10 +23,15 @@ class Detector(object):
         with torch.no_grad():
             outputs = self.net(x)
 
-        is_exists = len(outputs[0]['labels'])
+        result = outputs.pop()
+        is_exists = len(result['labels'])
         if is_exists > 0:
-            label: int = outputs[0]['labels'].item()
-            score: float = float('{:.3f}'.format(outputs[0]['scores'][0].item()))
+            max_confidence = 0.0
+            for score in result['scores']:
+                if max_confidence < score.item():  # type: ignore
+                    max_confidence = score.item()  # type: ignore
+            label = 1
+            score: float = float('{:.3f}'.format(max_confidence))
         else:
             label = 0
             score = 0.0

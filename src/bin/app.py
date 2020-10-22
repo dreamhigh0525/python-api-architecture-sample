@@ -2,8 +2,6 @@
 # -*- coding: utf-8 -*-
 
 import os
-
-import uvicorn
 from inference.helper.api_module import api
 from inference.application.inference_controller import InferenceController
 from inference.application.exception import exception_handler
@@ -21,7 +19,3 @@ def main():
 
 if __name__ == '__main__':
     main()
-    #port = os.environ.get('PORT', 80)
-    #debug = os.environ.get('DEBUG', False)
-    #api.run(address="0.0.0.0", port=port, debug=debug)
-    #uvicorn.run(api, host="0.0.0.0", port=port)

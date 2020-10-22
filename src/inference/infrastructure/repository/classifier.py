@@ -27,8 +27,9 @@ class Classifier(object):
 
         _, preds = torch.max(outputs, 1)  # type: ignore
         label = int(preds)
-        score = softmax(input=outputs, dim=1)[:, 1]
-        confidence = float(score.cpu()) if label == 1 else 1 - float(score.cpu())
+        output = softmax(input=outputs, dim=1)[:, 1]
+        score = float(output.cpu()) if label == 1 else 1 - float(output.cpu())
+        confidence = float('{:.3f}'.format(score))
         return (label, confidence)
 
     def __load_model(self, model_path: str) -> None:
