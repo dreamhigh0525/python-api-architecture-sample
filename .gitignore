@@ -5,3 +5,5 @@ build/
 
 static/
 *.log*
+*.jpg
+*.jpeg
