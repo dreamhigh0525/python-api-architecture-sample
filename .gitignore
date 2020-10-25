@@ -4,4 +4,4 @@ build/
 *.egg-info/
 
 static/
-*.log
+*.log*
