@@ -15,7 +15,7 @@ jobs:
         python -m pip install --upgrade pip
         pip install pipenv --upgrade-strategy=only-if-needed
         pipenv install --dev
-        python setup.py sdist
+        pipenv install -e
     - name: run test
       run: |
         pipenv run test
