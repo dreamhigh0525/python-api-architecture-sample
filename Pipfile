@@ -5,7 +5,9 @@ verify_ssl = true
 
 [dev-packages]
 pytest = "*"
+pytest-mock = "*"
 flake8 = "*"
+pytest-env = "*"
 
 [packages]
 injector = "==0.18.3"
