@@ -8,6 +8,7 @@ pytest = "*"
 pytest-mock = "*"
 flake8 = "*"
 pytest-env = "*"
+local = {path = ".", editable = true}
 
 [packages]
 injector = "==0.18.3"
