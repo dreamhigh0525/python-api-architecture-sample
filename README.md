@@ -1,5 +1,6 @@
-# Machine Learning Inference API simple architecture sample
+## Machine Learning Inference API simple architecture sample
 
-## note
-* PyTorch
+### dependencies
+* torch
 * responder
+* injector
