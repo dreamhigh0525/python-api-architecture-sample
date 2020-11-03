@@ -12,22 +12,22 @@ api = responder.API(
 
 
 logger = getLogger(__name__)
+logger.setLevel(INFO)
 formatter = Formatter('%(asctime)s [%(levelname)s] :%(message)s')
-filename = os.environ.get('LOG_PATH', 'logs/access.log')
-file_handler = TimedRotatingFileHandler(
-    filename=filename,
-    when='midnight',
-    backupCount=7,
-    encoding='utf-8'
-)
-file_handler.setLevel(INFO)
-file_handler.setFormatter(formatter)
+if os.environ.get('CI') is None:  # on Github Actions
+    filename = os.environ.get('LOG_PATH', 'logs/access.log')
+    file_handler = TimedRotatingFileHandler(
+        filename=filename,
+        when='midnight',
+        backupCount=7,
+        encoding='utf-8'
+    )
+    file_handler.setLevel(INFO)
+    file_handler.setFormatter(formatter)
+    logger.addHandler(file_handler)
+
 stream_handler = StreamHandler()
 stream_handler.setLevel(INFO)
 stream_handler.setFormatter(formatter)
-
-logger.setLevel(INFO)
-if os.environ.get('CI') is None:
-    logger.addHandler(file_handler)
 logger.addHandler(stream_handler)
 logger.propagate = False
