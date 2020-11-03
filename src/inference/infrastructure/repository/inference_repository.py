@@ -15,7 +15,6 @@ class InferenceRepository(AbstractInferenceRepository):
     detector: Detector
 
     def __init__(self):
-        self.classifier = None
         self.__set_model()
 
     def get_inference(self, type: InferenceType, content: Content) -> Inference:
@@ -37,7 +36,7 @@ class InferenceRepository(AbstractInferenceRepository):
                 self.detector = Detector(detector_model)
             else:
                 self.detector = self.classifier  # type: ignore
-                
+
         except KeyError as e:
             logger.critical(e.args[0] + ' key not found')
             raise ModelNotFoundError(e)

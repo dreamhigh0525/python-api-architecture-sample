@@ -22,6 +22,8 @@ class TestInferenceRepository:
             '_InferenceRepository__set_model',
             return_value=None
         )
+        with open('logs/access.log', 'w') as f:
+            pass
         return contents
 
     def test_get_inference_by_classifier(self, mocker: mock, contents: List[Content]):
@@ -32,7 +34,7 @@ class TestInferenceRepository:
         inference = repository.get_inference(InferenceType.CLASSIFIER, contents[0])
         assert inference == Inference(str(result[0]), result[1])
         repository.classifier.predict.assert_called_once_with(contents[0])
-    
+
     def test_get_inference_by_detector(self, mocker: mock, contents: List[Content]):
         repository = InferenceRepository()
         result = (1, 0.99)
@@ -41,4 +43,3 @@ class TestInferenceRepository:
         inference = repository.get_inference(InferenceType.DETECTOR, contents[0])
         assert inference == Inference(str(result[0]), result[1])
         repository.detector.predict.assert_called_once_with(contents[0])
-
