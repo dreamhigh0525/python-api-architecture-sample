@@ -19,7 +19,7 @@ class TestInferenceService:
         ]
         return contents
 
-    def test_classifier_inference(self, mocker: mock, contents: List[Content]):
+    def test_get_inference_by_classifier(self, mocker: mock, contents: List[Content]):
         repository_mock = mocker.MagicMock()
         repository_mock.get_inference = mocker.Mock(return_value=Inference('0', 0.99))
         service = InferenceService(repository_mock)
@@ -27,7 +27,7 @@ class TestInferenceService:
         repository_mock.get_inference.assert_called_once_with(InferenceType.CLASSIFIER, contents[0])
         assert inference == Inference('0', 0.99)
     
-    def test_detector_inference(self, mocker: mock, contents: List[Content]):
+    def test_get_inference_by_detector(self, mocker: mock, contents: List[Content]):
         repository_mock = mocker.MagicMock()
         repository_mock.get_inference = mocker.Mock(return_value=Inference('1', 0.89))
         service = InferenceService(repository_mock)

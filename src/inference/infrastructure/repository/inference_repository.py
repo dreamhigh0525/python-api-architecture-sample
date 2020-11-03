@@ -15,6 +15,7 @@ class InferenceRepository(AbstractInferenceRepository):
     detector: Detector
 
     def __init__(self):
+        self.classifier = None
         self.__set_model()
 
     def get_inference(self, type: InferenceType, content: Content) -> Inference:
