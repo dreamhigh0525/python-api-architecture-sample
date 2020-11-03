@@ -14,7 +14,7 @@ api = responder.API(
 logger = getLogger(__name__)
 logger.setLevel(INFO)
 formatter = Formatter('%(asctime)s [%(levelname)s] :%(message)s')
-if os.environ.get('CI') is None:  # on Github Actions
+if os.environ.get('GITHUB_ACTIONS') is None:  # for Github Actions
     filename = os.environ.get('LOG_PATH', 'logs/access.log')
     file_handler = TimedRotatingFileHandler(
         filename=filename,

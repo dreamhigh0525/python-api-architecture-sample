@@ -22,9 +22,6 @@ class TestInferenceRepository:
             '_InferenceRepository__set_model',
             return_value=None
         )
-        with open('logs/access.log', 'w') as f:
-            f.write('test')
-            
         return contents
 
     def test_get_inference_by_classifier(self, mocker: mock, contents: List[Content]):
