@@ -4,8 +4,6 @@ from inference.application.request_schema import InferenceRequest, InferenceRequ
 from inference.domain.object.content import Content
 from inference.domain.service.inference_service import InferenceService
 from inference.domain.service.report_service import ReportService
-from inference.domain.repository.inference_repository import AbstractInferenceRepository
-from inference.domain.repository.report_repository import AbstractReportRepository
 from inference.helper.api_module import api, logger
 from inference.helper.di_module import injector
 
@@ -15,14 +13,8 @@ class InferenceController:
     report_service: ReportService
 
     def __init__(self):
-        inference_repository = injector.get(AbstractInferenceRepository)
-        self.inference_service = InferenceService(
-            inference_repository=inference_repository
-        )
-        report_repository = injector.get(AbstractReportRepository)
-        self.report_service = ReportService(
-            report_repository=report_repository
-        )
+        self.inference_service = injector.get(InferenceService)
+        self.report_service = injector.get(ReportService)
 
     async def on_get(self, req: Request, res: Response):
         res.media = {'status': 'ok'}  # type: ignore
