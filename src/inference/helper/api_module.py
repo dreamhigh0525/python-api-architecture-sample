@@ -1,4 +1,4 @@
-
+import os
 import responder
 from logging import getLogger, Formatter, StreamHandler, INFO
 from logging.handlers import TimedRotatingFileHandler
@@ -13,8 +13,9 @@ api = responder.API(
 
 logger = getLogger(__name__)
 formatter = Formatter('%(asctime)s [%(levelname)s] :%(message)s')
+filename = os.environ.get('LOG_PATH', 'logs/access.log')
 file_handler = TimedRotatingFileHandler(
-    filename='logs/access.log',
+    filename=filename,
     when='midnight',
     backupCount=7,
     encoding='utf-8'
@@ -26,6 +27,7 @@ stream_handler.setLevel(INFO)
 stream_handler.setFormatter(formatter)
 
 logger.setLevel(INFO)
-logger.addHandler(file_handler)
+if os.environ.get('CI') is None:
+    logger.addHandler(file_handler)
 logger.addHandler(stream_handler)
 logger.propagate = False
