@@ -1,3 +1,4 @@
+from injector import inject
 from responder import Request, Response
 from marshmallow.exceptions import ValidationError
 from inference.application.request_schema import InferenceRequest, InferenceRequestSchema
@@ -5,16 +6,16 @@ from inference.domain.object.content import Content
 from inference.domain.service.inference_service import InferenceService
 from inference.domain.service.report_service import ReportService
 from inference.helper.api_module import api, logger
-from inference.helper.di_module import injector
 
 
 class InferenceController:
     inference_service: InferenceService
     report_service: ReportService
 
-    def __init__(self):
-        self.inference_service = injector.get(InferenceService)
-        self.report_service = injector.get(ReportService)
+    @inject
+    def __init__(self, inference_service: InferenceService, report_service: ReportService):
+        self.inference_service = inference_service
+        self.report_service = report_service
 
     async def on_get(self, req: Request, res: Response):
         res.media = {'status': 'ok'}  # type: ignore

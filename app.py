@@ -5,9 +5,9 @@ import os
 from inference.helper.api_module import api
 from inference.application.inference_controller import InferenceController
 from inference.application.exception import exception_handler
+from inference.helper.di_module import injector
 
-
-controller = InferenceController()
+controller = injector.get(InferenceController)
 api.add_route('/inference', controller.on_post)
 api.add_route('/report', controller.on_get)
 api.add_route('/', exception_handler, default=True)

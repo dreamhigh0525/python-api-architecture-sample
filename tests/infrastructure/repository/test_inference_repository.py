@@ -1,6 +1,6 @@
 from typing import List
-import pytest
 from unittest import mock
+import pytest
 from inference.domain.object.content import Content
 from inference.domain.object.inference import Inference
 from inference.domain.object.inference_type import InferenceType
@@ -15,7 +15,7 @@ class TestInferenceRepository:
             image_data = f.read()
         contents = [
             Content('test id', 'movie', 'http://localhost', image_data),
-            Content('test id', 'gun', 'http://localhost', image_data)
+            Content('test id 2', 'gun', 'http://localhost', image_data)
         ]
         mocker.patch.object(
             InferenceRepository,
@@ -38,6 +38,6 @@ class TestInferenceRepository:
         result = (1, 0.99)
         repository.detector = mocker.MagicMock()
         repository.detector.predict = mocker.Mock(return_value=result)
-        inference = repository.get_inference(InferenceType.DETECTOR, contents[0])
+        inference = repository.get_inference(InferenceType.DETECTOR, contents[1])
         assert inference == Inference(str(result[0]), result[1])
-        repository.detector.predict.assert_called_once_with(contents[0])
+        repository.detector.predict.assert_called_once_with(contents[1])

@@ -1,6 +1,6 @@
 from typing import Tuple
-import pytest
 from unittest import mock
+import pytest
 from inference.domain.object.content import Content
 from inference.domain.object.inference import Inference
 from inference.domain.service.report_service import ReportService

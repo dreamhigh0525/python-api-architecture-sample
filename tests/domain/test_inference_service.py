@@ -1,6 +1,6 @@
 from typing import List
-import pytest
 from unittest import mock
+import pytest
 from inference.domain.object.content import Content
 from inference.domain.object.inference import Inference
 from inference.domain.object.inference_type import InferenceType
@@ -15,7 +15,7 @@ class TestInferenceService:
             image_data = f.read()
         contents = [
             Content('test id', 'movie', 'http://localhost', image_data),
-            Content('test id', 'gun', 'http://localhost', image_data)
+            Content('test id 2', 'gun', 'http://localhost', image_data)
         ]
         return contents
 
@@ -34,4 +34,3 @@ class TestInferenceService:
         inference = service.get_inference(contents[1])
         repository_mock.get_inference.assert_called_once_with(InferenceType.DETECTOR, contents[1])
         assert inference == Inference('1', 0.89)
-
