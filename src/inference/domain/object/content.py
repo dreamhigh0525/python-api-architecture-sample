@@ -16,5 +16,4 @@ class Content:
         object.__setattr__(self, 'id', id)
         object.__setattr__(self, 'url', url)
         object.__setattr__(self, 'category', category)
-        object.__setattr__(self, 'data', Image.open(BytesIO(data)))
-        self.data.convert('RGB')
+        object.__setattr__(self, 'data', Image.open(BytesIO(data)).convert('RGB'))

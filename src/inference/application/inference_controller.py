@@ -68,7 +68,7 @@ class InferenceController:
             self.__process_data(schema)
             res.status_code = 202
             res.media = {'status': f'request accepted: {schema.id}'}  # type: ignore
-            logger.info(f'request accepted: {schema.id}')
+            logger.debug(f'request accepted: {schema.id}')
         except ValidationError as e:
             res.status_code = 400
             res.media = {'message': e.messages}  # type: ignore
@@ -83,5 +83,5 @@ class InferenceController:
             data=req.file['content']
         )
         result = self.inference_service.get_inference(content)
-        logger.info(result)
+        logger.info(f':{content.id}\t{content.category}\t{content.url}\t{result.label}\t{result.confidence}')
         self.report_service.report_inference(content, result)
