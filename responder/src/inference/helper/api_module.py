@@ -3,11 +3,16 @@ import responder
 from logging import getLogger, Formatter, StreamHandler, INFO
 from logging.handlers import TimedRotatingFileHandler
 
+cors = {
+    'allow_origins': ['*']
+}
 api = responder.API(
     openapi='3.0.0',
     title="Image Inference API",
     docs_route='/docs',
-    version='0.0.1'
+    version='0.0.1',
+    cors=True,
+    cors_params=cors
 )
 
 

@@ -21,4 +21,5 @@ torchvision = "==0.5.0"
 python_version = "3.7"
 
 [scripts]
+app = "uvicorn --host 127.0.0.1 --port 8080 app:api"
 test = "pytest -v"

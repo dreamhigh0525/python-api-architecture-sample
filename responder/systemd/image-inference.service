@@ -1,0 +1,16 @@
+[Unit]
+Description=Image Inference API Service
+After=network.target
+
+[Service]
+Type=simple
+User=ryo
+Group=ryo
+WorkingDirectory=/mnt/d/Data/Users/Documents/VSCode/image-inference-api
+Environment=CLASSIFIER_MODEL=model_epoch_110_NSFW.pth
+Environment=DETECTOR_MODEL=model_epoch_75_Guns.pth
+ExecStart=/home/ryo/.pyenv/shims/pipenv run app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

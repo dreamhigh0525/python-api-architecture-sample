@@ -3,6 +3,7 @@ from responder import Request, Response
 from marshmallow.exceptions import ValidationError
 from inference.application.request_schema import InferenceRequest, InferenceRequestSchema
 from inference.domain.object.content import Content
+from inference.domain.object.inference import Inference
 from inference.domain.service.inference_service import InferenceService
 from inference.domain.service.report_service import ReportService
 from inference.helper.api_module import api, logger
@@ -65,17 +66,19 @@ class InferenceController:
         try:
             data = await req.media(format='files')
             schema = InferenceRequestSchema().load(data, many=False)
-            self.__process_data(schema)
-            res.status_code = 202
-            res.media = {'status': f'request accepted: {schema.id}'}  # type: ignore
-            logger.debug(f'request accepted: {schema.id}')
+            result = self.__process_data(schema)
+            # res.status_code = 202
+            res.status_code = 200
+            # res.media = {'status': f'request accepted: {schema.id}'}  # type: ignore
+            # logger.debug(f'request accepted: {schema.id}')
+            res.media = {'label': result.label, 'confidence': result.confidence}  # type: ignore
         except ValidationError as e:
             res.status_code = 400
             res.media = {'message': e.messages}  # type: ignore
             logger.warn(e.messages)
 
-    @api.background.task
-    def __process_data(self, req: InferenceRequest):
+    # @api.background.task
+    def __process_data(self, req: InferenceRequest) -> Inference:
         content = Content(
             id=req.id,
             category=req.category,
@@ -84,4 +87,5 @@ class InferenceController:
         )
         result = self.inference_service.get_inference(content)
         logger.info(f':{content.id}\t{content.category}\t{content.url}\t{result.label}\t{result.confidence}')
-        self.report_service.report_inference(content, result)
+        return result
+        #self.report_service.report_inference(content, result)
