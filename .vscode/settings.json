@@ -1,6 +1,4 @@
 {
-    "python.pythonPath": "/home/ryo/.pyenv/versions/anaconda3-2020.02/bin/python",
-    "python.venvPath": "/mnt/d/Data/Users/Documents/VSCode/image-inference-api/.venv",
     "python.linting.pylintEnabled": false,
     "python.linting.flake8Enabled": true,
     "python.linting.enabled": true,
