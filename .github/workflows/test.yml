@@ -18,4 +18,5 @@ jobs:
         sed -ri 's/python_version = ".+"/python_version = "${{ matrix.python }}"/g' Pipfile
         pipenv install --dev --skip-lock
     - run: |
+        cd ./responder_app
         pipenv run test
