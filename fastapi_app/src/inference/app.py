@@ -1,20 +1,21 @@
 #!/usr/bin/env python
 
+import os
 from fastapi import FastAPI
+import uvicorn
 from .application.controller import router
 from .helper import extend_schema
-import uvicorn
-from pprint import pprint
+
 
 api = FastAPI()
 api.include_router(router)
 extend_schema(api)
 
-def start(host: str="127.0.0.1", port: int=8888):
+def start():
     uvicorn.run(
         "src.inference.app:api",
-        host=host,
-        port=port,
+        host=os.environ.get('HOST', '127.0.0.1'),
+        port=int(os.environ.get('PORT', 8080)),
         log_level="info",
         reload=True
     )
