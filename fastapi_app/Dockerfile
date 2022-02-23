@@ -1,5 +1,5 @@
 ## multi stage build
-FROM python:3.10 as builder
+FROM python:3.10 AS builder
 WORKDIR /usr/src/app
 RUN pip install poetry
 COPY pyproject.toml poetry.lock ./
