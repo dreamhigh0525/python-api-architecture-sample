@@ -14,7 +14,7 @@ class Proxy(InferenceRepository):
         
     async def get_inference(self, type: InferenceType, content: Content) -> Inference:
         image = content.get_pil_image()
-        response = requests.post(self.entry_point, data={'a':'b'})
+        response = requests.post(self.entry_point, data={'a': 'b'})
         print(response.content)
         return Inference(label='label', confidence=1.0)
 

@@ -1,20 +1,17 @@
 #!/usr/bin/env python
 
 import os
-from fastapi import FastAPI, Request
-from fastapi.responses import JSONResponse
+from fastapi import FastAPI
 import uvicorn
 from .application.controller import router
+from .application.exceptions import set_exceptions
 from .helper import extend_schema
 
 
 api = FastAPI()
 api.include_router(router)
 extend_schema(api)
-
-@api.exception_handler(ValueError)
-async def error_handler(request: Request, error: ValueError):
-    return JSONResponse(status_code=400, content={"message": str(error)})
+set_exceptions(api)
 
 
 def start():
@@ -29,4 +26,3 @@ def start():
 
 if __name__ == '__main__':
     start()
-
