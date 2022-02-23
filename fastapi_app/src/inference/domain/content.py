@@ -1,3 +1,4 @@
+from typing import Union
 from io import BytesIO
 from fastapi import File, Form, UploadFile
 from pydantic import BaseModel, validator
@@ -15,7 +16,7 @@ class Content(BaseModel):
     image: UploadFile = File(..., title='content image file')
 
     @validator('image')
-    def check_image_type(cls, image: UploadFile) -> UploadFile | ValueError:
+    def check_image_type(cls, image: UploadFile) -> Union[UploadFile, ValueError]:
         if not image.content_type == 'image/jpeg':
             raise ValueError('content-type must be image/jpeg')
         return image

@@ -65,6 +65,14 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*"
 
 [[package]]
+name = "deta"
+version = "1.0.1"
+description = "Python SDK for Deta Base & Deta Drive."
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "fastapi"
 version = "0.74.0"
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
@@ -257,7 +265,7 @@ standard = ["websockets (>=10.0)", "httptools (>=0.2.0,<0.4.0)", "watchgod (>=0.
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.10"
-content-hash = "a42bfa6f0d785ab6f3b014ace11cbc2a9410548c56994f851b3d16cc8be67b55"
+content-hash = "6041308f22503b08362c84d59a51452fb33484d83b5e2459557c7cf77bb58cec"
 
 [metadata.files]
 anyio = [
@@ -283,6 +291,10 @@ click = [
 colorama = [
     {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
     {file = "colorama-0.4.4.tar.gz", hash = "sha256:5941b2b48a20143d2267e95b1c2a7603ce057ee39fd88e7329b0c292aa16869b"},
+]
+deta = [
+    {file = "deta-1.0.1-py3-none-any.whl", hash = "sha256:a910c76fe521ee1fd6f5ee5e5b54a53cc1a38508a8026da1b0c02949db319869"},
+    {file = "deta-1.0.1.tar.gz", hash = "sha256:d0e59063419cdd9fdd5e1ead18dc930eaf25484521cdb5431874ff758e61d74e"},
 ]
 fastapi = [
     {file = "fastapi-0.74.0-py3-none-any.whl", hash = "sha256:e21d7d0d587c8c2014e8ff61be2626f999cfb8c3cb42f034df9f8589bcb893e1"},
