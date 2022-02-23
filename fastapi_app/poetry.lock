@@ -47,7 +47,7 @@ unicode_backport = ["unicodedata2"]
 
 [[package]]
 name = "click"
-version = "8.0.3"
+version = "8.0.4"
 description = "Composable command line interface toolkit"
 category = "main"
 optional = false
@@ -74,7 +74,7 @@ python-versions = "*"
 
 [[package]]
 name = "fastapi"
-version = "0.74.0"
+version = "0.74.1"
 description = "FastAPI framework, high performance, easy to learn, fast to code, ready for production"
 category = "main"
 optional = false
@@ -264,8 +264,8 @@ standard = ["websockets (>=10.0)", "httptools (>=0.2.0,<0.4.0)", "watchgod (>=0.
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.10"
-content-hash = "6041308f22503b08362c84d59a51452fb33484d83b5e2459557c7cf77bb58cec"
+python-versions = "^3.9"
+content-hash = "6bdd4f041193e79729fb971c66b897cdbef31c1e886bd6c2f371e90eff3fb98a"
 
 [metadata.files]
 anyio = [
@@ -285,8 +285,8 @@ charset-normalizer = [
     {file = "charset_normalizer-2.0.12-py3-none-any.whl", hash = "sha256:6881edbebdb17b39b4eaaa821b438bf6eddffb4468cf344f09f89def34a8b1df"},
 ]
 click = [
-    {file = "click-8.0.3-py3-none-any.whl", hash = "sha256:353f466495adaeb40b6b5f592f9f91cb22372351c84caeb068132442a4518ef3"},
-    {file = "click-8.0.3.tar.gz", hash = "sha256:410e932b050f5eed773c4cda94de75971c89cdb3155a72a0831139a79e5ecb5b"},
+    {file = "click-8.0.4-py3-none-any.whl", hash = "sha256:6a7a62563bbfabfda3a38f3023a1db4a35978c0abd76f6c9605ecd6554d6d9b1"},
+    {file = "click-8.0.4.tar.gz", hash = "sha256:8458d7b1287c5fb128c90e23381cf99dcde74beaf6c7ff6384ce84d6fe090adb"},
 ]
 colorama = [
     {file = "colorama-0.4.4-py2.py3-none-any.whl", hash = "sha256:9f47eda37229f68eee03b24b9748937c7dc3868f906e8ba69fbcbdd3bc5dc3e2"},
@@ -297,8 +297,8 @@ deta = [
     {file = "deta-1.0.1.tar.gz", hash = "sha256:d0e59063419cdd9fdd5e1ead18dc930eaf25484521cdb5431874ff758e61d74e"},
 ]
 fastapi = [
-    {file = "fastapi-0.74.0-py3-none-any.whl", hash = "sha256:e21d7d0d587c8c2014e8ff61be2626f999cfb8c3cb42f034df9f8589bcb893e1"},
-    {file = "fastapi-0.74.0.tar.gz", hash = "sha256:5363a2cd983aa700e5a6c25d63d1b84aee0d4c94358247b4a1a947e39f654ffe"},
+    {file = "fastapi-0.74.1-py3-none-any.whl", hash = "sha256:b8ec8400623ef0b2ff558ebe06753b349f8e3a5dd38afea650800f2644ddba34"},
+    {file = "fastapi-0.74.1.tar.gz", hash = "sha256:b58a2c46df14f62ebe6f24a9439927539ba1959b9be55ba0e2f516a683e5b9d4"},
 ]
 flake8 = [
     {file = "flake8-4.0.1-py2.py3-none-any.whl", hash = "sha256:479b1304f72536a55948cb40a32dce8bb0ffe3501e26eaf292c7e60eb5e0428d"},
